@@ -1180,6 +1180,11 @@ ul {
   color: var(--color-primary-100);
 }
 
+.inv-hint {
+  padding: 1rem 0;
+  font-size: 1rem;
+}
+
 /* ------------------------------------------------------------
    13. SECTION — CENTERED HEADER HELPER
    ------------------------------------------------------------ */
@@ -1352,4 +1357,34 @@ ul {
 .rental-card,
 .inventory-card {
   outline: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Sales page styles */
+/* Sales page styles */
+.sales-nav {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.sales-nav a {
+  display: inline-block;
+  background-color: var(--color-primary-900);
+  color: var(--color-accent-light);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background-color 300ms linear;
+}
+
+.sales-nav a:hover {
+  background-color: var(--color-primary-800);
+}
+
+.sales-nav a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
 }

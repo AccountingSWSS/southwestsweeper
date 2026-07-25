@@ -1,0 +1,85 @@
+---
+import { contentfulClient } from "../../lib/contentful";
+import type { SalesItem } from "../../types/contentful";
+import Layout from "../../layouts/Layout.astro";
+
+let grouped: Record<
+  string,
+  {
+    name: string;
+    category: string;
+    description: string;
+    price: number;
+    sortOrder: number;
+  }[]
+> = {};
+
+try {
+  const entries = await contentfulClient.getEntries<SalesItem>({
+    content_type: "salesItem",
+    order: ["fields.sortOrder"] as any,
+  });
+  const items = entries.items.map((item) => ({
+    name: item.fields.name as string,
+    category: item.fields.category as string,
+    description: item.fields.description as string,
+    price: item.fields.price as number,
+    sortOrder: item.fields.sortOrder as number,
+  }));
+  grouped = items.reduce(
+    (acc, item) => {
+      if (!acc[item.category]) acc[item.category] = [];
+      acc[item.category].push(item);
+      return acc;
+    },
+    {} as typeof grouped,
+  );
+} catch (e) {
+  console.error("Failed to fetch salesItem entries:", e);
+}
+---
+
+<Layout title="Sales | Southwest Sweeper Sales">
+  <main id="main-content">
+    <section class="page-hero" aria-labelledby="page-heading">
+      <div class="container">
+        <h1 id="page-heading">Sales</h1>
+        <p class="lead">
+          Explore our range of sweepers, scrubbers, and floor care equipment
+          available for purchase. Our sales team is here to help you find the
+          perfect solution for your needs.
+        </p>
+        <p class="lead">
+          Explore our range of sweepers, scrubbers, and floor care equipment
+          available for purchase. Our sales team is here to help you find the
+          perfect solution for your needs.
+        </p>
+        <nav aria-label="Sales pages" class="sales-nav">
+          <a href="/sales/contact/">Contact Sales</a>
+          <a href="/sales/inquiry/">Submit an Inquiry</a>
+        </nav>
+      </div>
+    </section>
+
+    <section class="sales-inventory" aria-labelledby="inventory-heading">
+      <div class="container">
+        <h2 id="inventory-heading">Our Inventory</h2>
+        {
+          Object.entries(grouped).map(([category, items]) => (
+            <div class="sales-category">
+              <h3>{category}</h3>
+              <ul class="sales-items" role="list">
+                {items.map((item) => (
+                  <li class="sales-item">
+                    <h4>{item.name}</h4>
+                    <p>{item.description}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+</Layout>

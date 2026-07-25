@@ -1,4 +1,4 @@
-import type { EntryFieldTypes } from "contentful";
+import type { EntrySkeletonType, EntryFieldTypes } from "contentful";
 
 export interface RentalItem {
   contentTypeId: "rentalItem";
@@ -24,5 +24,16 @@ export interface InventoryItem {
     pricePerMonth: EntryFieldTypes.Number;
     inStock: EntryFieldTypes.Boolean;
     image?: EntryFieldTypes.AssetLink;
+  };
+}
+
+export interface SalesItem {
+  contentTypeId: "salesItem";
+  fields: {
+    name: EntryFieldTypes.Text;
+    category: EntryFieldTypes.Text;
+    description: EntryFieldTypes.Text;
+    price: EntryFieldTypes.Number;
+    sortOrder: EntryFieldTypes.Integer;
   };
 }

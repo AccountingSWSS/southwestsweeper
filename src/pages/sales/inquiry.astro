@@ -1,0 +1,628 @@
+---
+// src/pages/sales/inquiry.astro
+// Sales inquiry form — direct contact for potential customers
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Sales Inquiry | Southwest Sweeper Sales">
+  <main id="main-content">
+    <section class="page-hero" aria-labelledby="page-heading">
+      <div class="container container--medium">
+        <h1 id="page-heading">Sales Inquiry</h1>
+        <p class="lead">
+          Tell us about your needs and a member of our sales team will be in
+          touch within one business day.
+        </p>
+      </div>
+    </section>
+
+    <section class="form-section" aria-labelledby="form-heading">
+      <div class="container container--medium">
+        <h2 id="form-heading" class="sr-only">Inquiry form</h2>
+
+        <!-- Success message shown after submit (hidden by default) -->
+        <div
+          id="success-message"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          hidden
+          class="success-banner"
+        >
+          <strong>Thank you!</strong> We received your inquiry and will be in touch
+          within one business day.
+        </div>
+
+        <!-- Error summary shown when validation fails (hidden by default) -->
+        <div
+          id="error-summary"
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+          hidden
+          class="error-summary"
+          tabindex="-1"
+        >
+          <strong>Please correct the following before submitting:</strong>
+          <ul id="error-list"></ul>
+        </div>
+
+        <form
+          id="inquiry-form"
+          novalidate
+          aria-label="Sales inquiry"
+          class="inquiry-form"
+        >
+          <fieldset>
+            <legend>Your information</legend>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="first-name"
+                  >First name <span class="required" aria-hidden="true">*</span
+                  ></label
+                >
+                <input
+                  type="text"
+                  id="first-name"
+                  name="first_name"
+                  autocomplete="given-name"
+                  required
+                  aria-required="true"
+                  aria-describedby="first-name-error"
+                />
+                <span
+                  id="first-name-error"
+                  class="field-error"
+                  role="alert"
+                  hidden></span>
+              </div>
+
+              <div class="field">
+                <label for="last-name"
+                  >Last name <span class="required" aria-hidden="true">*</span
+                  ></label
+                >
+                <input
+                  type="text"
+                  id="last-name"
+                  name="last_name"
+                  autocomplete="family-name"
+                  required
+                  aria-required="true"
+                  aria-describedby="last-name-error"
+                />
+                <span
+                  id="last-name-error"
+                  class="field-error"
+                  role="alert"
+                  hidden></span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="company">Company name</label>
+              <input
+                type="text"
+                id="company"
+                name="company"
+                autocomplete="organization"
+              />
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="email"
+                  >Email address <span class="required" aria-hidden="true"
+                    >*</span
+                  ></label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  autocomplete="email"
+                  required
+                  aria-required="true"
+                  aria-describedby="email-error"
+                />
+                <span id="email-error" class="field-error" role="alert" hidden
+                ></span>
+              </div>
+
+              <div class="field">
+                <label for="phone">Phone number</label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" />
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Inquiry details</legend>
+
+            <div class="field">
+              <label for="interest"
+                >I am interested in <span class="required" aria-hidden="true"
+                  >*</span
+                ></label
+              >
+              <select
+                id="interest"
+                name="interest"
+                required
+                aria-required="true"
+                aria-describedby="interest-error"
+              >
+                <option value="">— Select an option —</option>
+                <option value="new-equipment">New equipment purchase</option>
+                <option value="used-equipment">Used equipment purchase</option>
+                <option value="rental">Equipment rental</option>
+                <option value="parts">Parts and accessories</option>
+                <option value="service">Service and maintenance</option>
+                <option value="general">General sales question</option>
+              </select>
+              <span id="interest-error" class="field-error" role="alert" hidden
+              ></span>
+            </div>
+
+            <div class="field">
+              <label for="message"
+                >Message <span class="required" aria-hidden="true">*</span
+                ></label
+              >
+              <textarea
+                id="message"
+                name="message"
+                rows="6"
+                required
+                aria-required="true"
+                aria-describedby="message-hint message-error"
+                placeholder="Describe your equipment needs, fleet size, application, or any questions for our sales team."
+              ></textarea>
+              <span id="message-hint" class="field-hint">
+                The more detail you share, the better we can help.
+              </span>
+              <span id="message-error" class="field-error" role="alert" hidden
+              ></span>
+            </div>
+
+            <div class="field">
+              <label for="preferred-contact">Preferred contact method</label>
+              <select id="preferred-contact" name="preferred_contact">
+                <option value="email">Email</option>
+                <option value="phone">Phone</option>
+              </select>
+            </div>
+          </fieldset>
+
+          <div class="form-footer">
+            <p class="required-note">
+              <span aria-hidden="true">*</span> Required fields
+            </p>
+            <button type="submit" class="btn-submit"> Submit Inquiry </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    /* --- hero --- */
+    .page-hero {
+      background-color: var(--color-primary-900);
+      color: var(--color-accent-light);
+      padding: 4rem 0;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin: 0 0 1rem;
+      line-height: 1.1;
+    }
+
+    .lead {
+      font-size: 1.125rem;
+      color: var(--color-primary-200);
+      max-width: 52ch;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* --- section --- */
+    .form-section {
+      padding: 4rem 0;
+      background-color: var(--bg-body);
+    }
+
+    /* --- status banners --- */
+    .success-banner {
+      background-color: color-mix(
+        in srgb,
+        var(--color-primary-500) 10%,
+        transparent
+      );
+      border: 1px solid var(--color-primary-300);
+      border-radius: 0.5rem;
+      padding: 1rem 1.5rem;
+      margin-bottom: 2.5rem;
+      color: var(--color-primary-900);
+    }
+
+    .dark .success-banner {
+      color: var(--color-primary-200);
+    }
+
+    .error-summary {
+      background-color: #fef2f2;
+      border: 1px solid #fca5a5;
+      border-radius: 0.5rem;
+      padding: 1rem 1.5rem;
+      margin-bottom: 2.5rem;
+      color: #b91c1c;
+    }
+
+    .error-summary ul {
+      margin: 0.5rem 0 0;
+      padding-left: 1.25rem;
+    }
+
+    .error-summary li {
+      margin-bottom: 0.25rem;
+    }
+
+    .error-summary a {
+      color: #b91c1c;
+    }
+
+    /* --- form --- */
+    .inquiry-form {
+      background-color: var(--bg-card);
+      border: 1px solid var(--color-base-200);
+      border-radius: 0.5rem;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .dark .inquiry-form {
+      border-color: var(--color-base-dark-700);
+    }
+
+    fieldset {
+      border: 0;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    legend {
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-base-dark-50);
+      padding: 0;
+      margin-bottom: 0.5rem;
+      width: 100%;
+      border-bottom: 1px solid var(--color-base-200);
+      padding-bottom: 0.5rem;
+    }
+
+    .dark legend {
+      color: var(--color-base-500);
+      border-bottom-color: var(--color-base-dark-700);
+    }
+
+    /* --- fields --- */
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    label {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text-body);
+    }
+
+    .required {
+      color: var(--color-primary-700);
+      margin-left: 0.125rem;
+    }
+
+    .dark .required {
+      color: var(--color-primary-400);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      font-size: 1rem;
+      font-family: var(--font-sans);
+      color: var(--text-body);
+      background-color: var(--bg-card);
+      border: 1px solid var(--color-base-300);
+      border-radius: 0.5rem;
+      padding: 0.5625rem 0.75rem;
+      width: 100%;
+      transition: border-color 300ms linear;
+      appearance: none;
+    }
+
+    .dark input[type="text"],
+    .dark input[type="email"],
+    .dark input[type="tel"],
+    .dark select,
+    .dark textarea {
+      border-color: var(--color-base-dark-600);
+    }
+
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 1px;
+      border-color: var(--color-primary);
+    }
+
+    input[aria-invalid="true"],
+    select[aria-invalid="true"],
+    textarea[aria-invalid="true"] {
+      border-color: #b91c1c;
+      background-color: #fef2f2;
+    }
+
+    textarea {
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23507050' d='M4.5 6L8 9.5 11.5 6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-size: 1rem;
+      padding-right: 2.25rem;
+      cursor: pointer;
+    }
+
+    .field-hint {
+      font-size: 0.875rem;
+      color: var(--color-base-dark-50);
+    }
+
+    .dark .field-hint {
+      color: var(--color-base-500);
+    }
+
+    .field-error {
+      font-size: 0.875rem;
+      color: #b91c1c;
+      font-weight: 500;
+    }
+
+    /* --- form footer --- */
+    .form-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding-top: 1rem;
+      border-top: 1px solid var(--color-base-200);
+    }
+
+    .dark .form-footer {
+      border-top-color: var(--color-base-dark-700);
+    }
+
+    .required-note {
+      font-size: 0.875rem;
+      color: var(--color-base-dark-50);
+      margin: 0;
+    }
+
+    .dark .required-note {
+      color: var(--color-base-500);
+    }
+
+    .btn-submit {
+      background-color: var(--color-primary-900);
+      color: var(--color-accent-light);
+      font-weight: 700;
+      font-size: 1rem;
+      font-family: var(--font-sans);
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background-color 300ms linear;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--color-primary-800);
+    }
+
+    .btn-submit:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 3px;
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* --- responsive --- */
+    @media (max-width: 600px) {
+      .field-row {
+        grid-template-columns: 1fr;
+      }
+
+      .inquiry-form {
+        padding: 1.5rem;
+      }
+
+      .form-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .btn-submit {
+        width: 100%;
+      }
+    }
+  </style>
+
+  <script>
+    // Client-side validation — no library dependency
+
+    const form = document.getElementById("inquiry-form") as HTMLFormElement;
+    const errorSummary = document.getElementById(
+      "error-summary",
+    ) as HTMLElement;
+    const errorList = document.getElementById("error-list") as HTMLUListElement;
+    const successMessage = document.getElementById(
+      "success-message",
+    ) as HTMLElement;
+
+    // Fields to validate: [id, label, custom validator?]
+    const fields: [string, string, ((v: string) => string | null)?][] = [
+      ["first-name", "First name"],
+      ["last-name", "Last name"],
+      [
+        "email",
+        "Email address",
+        (v) => {
+          if (!v) return "Email address is required.";
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v))
+            return "Enter a valid email address.";
+          return null;
+        },
+      ],
+      [
+        "interest",
+        "Interest",
+        (v) => (!v ? "Please select what you are interested in." : null),
+      ],
+      ["message", "Message"],
+    ];
+
+    function setFieldError(id: string, message: string | null) {
+      const input = document.getElementById(id) as
+        | HTMLInputElement
+        | HTMLSelectElement
+        | HTMLTextAreaElement;
+      const errorEl = document.getElementById(`${id}-error`) as HTMLElement;
+      if (!input || !errorEl) return;
+
+      if (message) {
+        input.setAttribute("aria-invalid", "true");
+        errorEl.textContent = message;
+        errorEl.hidden = false;
+      } else {
+        input.removeAttribute("aria-invalid");
+        errorEl.textContent = "";
+        errorEl.hidden = true;
+      }
+    }
+
+    function validateForm(): boolean {
+      const errors: { id: string; label: string; message: string }[] = [];
+
+      for (const [id, label, customValidator] of fields) {
+        const el = document.getElementById(id) as
+          | HTMLInputElement
+          | HTMLSelectElement
+          | HTMLTextAreaElement;
+        if (!el) continue;
+
+        const value = el.value.trim();
+        let message: string | null = null;
+
+        if (customValidator) {
+          message = customValidator(value);
+        } else if (!value) {
+          message = `${label} is required.`;
+        }
+
+        setFieldError(id, message);
+        if (message) errors.push({ id, label, message });
+      }
+
+      if (errors.length > 0) {
+        errorList.innerHTML = "";
+        errors.forEach(({ id, message }) => {
+          const li = document.createElement("li");
+          const a = document.createElement("a");
+          a.href = `#${id}`;
+          a.textContent = message;
+          li.appendChild(a);
+          errorList.appendChild(li);
+        });
+        errorSummary.hidden = false;
+        errorSummary.focus();
+        return false;
+      }
+
+      errorSummary.hidden = true;
+      errorList.innerHTML = "";
+      return true;
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      if (!validateForm()) return;
+
+      const submitBtn = form.querySelector(".btn-submit") as HTMLButtonElement;
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending…";
+
+      try {
+        // Replace with your actual form endpoint (Netlify Forms, API route, etc.)
+        const data = new FormData(form);
+        await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(
+            data as unknown as Record<string, string>,
+          ).toString(),
+        });
+
+        form.reset();
+        form.hidden = true;
+        successMessage.hidden = false;
+        successMessage.scrollIntoView({ behavior: "smooth", block: "start" });
+      } catch {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit Inquiry";
+        // Surface a generic error in the summary
+        errorList.innerHTML =
+          "<li>Something went wrong. Please try again or contact us directly.</li>";
+        errorSummary.hidden = false;
+        errorSummary.focus();
+      }
+    });
+
+    // Clear individual field errors on input
+    fields.forEach(([id]) => {
+      const el = document.getElementById(id);
+      el?.addEventListener("input", () => setFieldError(id, null));
+    });
+  </script></Layout
+>
