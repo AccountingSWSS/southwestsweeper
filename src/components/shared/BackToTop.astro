@@ -1,0 +1,70 @@
+---
+// src/components/shared/BackToTop.astro
+// Fixed back-to-top button, shown after scrolling 300px
+---
+
+<button id="back-to-top" class="back-to-top" aria-label="Back to top" hidden>
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path d="M18 15l-6-6-6 6"></path>
+  </svg>
+</button>
+
+<style>
+  .back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    background-color: var(--color-primary-900);
+    color: var(--color-accent-light);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    transition:
+      background-color 300ms linear,
+      opacity 300ms linear;
+  }
+
+  .back-to-top:hover {
+    background-color: var(--color-primary-800);
+  }
+
+  .back-to-top:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+
+  .back-to-top svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+</style>
+
+<script>
+  const btn = document.getElementById("back-to-top") as HTMLButtonElement;
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      btn.hidden = window.scrollY < 300;
+    },
+    { passive: true },
+  );
+
+  btn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>

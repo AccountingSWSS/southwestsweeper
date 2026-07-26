@@ -7,16 +7,10 @@ const currentPath = Astro.url.pathname;
 const isHome = currentPath === "/";
 
 const navItems = [
-  { href: isHome ? "#inventory" : "/inventory/", text: "Inventory" },
-  {
-    href: isHome ? "#parts-service" : "/parts-service/",
-    text: "Parts & Service",
-  },
-  { href: isHome ? "#rentals" : "/rentals/", text: "Rentals" },
-  {
-    href: isHome ? "#facility-services" : "/facility-services/",
-    text: "Facility Services",
-  },
+  { href: "/inventory/", text: "Inventory" },
+  { href: "/parts-service/", text: "Parts & Service", },
+  { href: "/rentals/", text: "Rentals" },
+  { href: "/facility-services/", text: "Facility Services", },
 ];
 ---
 

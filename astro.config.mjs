@@ -4,5 +4,5 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   site: "https://southwestsweeper.netlify.app",
   output: "static",
-  trailingSlash: "always",
+  trailingSlash: "ignore",
 });

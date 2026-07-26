@@ -78,9 +78,9 @@
   --color-base-dark-950: #1a1a1a;
 
   /* Accent */
-  --color-accent: #000000;
-  --color-accent-light: #ffffff;
-  --color-accent-dark: #000000;
+  --color-accent: #0b0b0b;
+  --color-accent-light: #fafafa;
+  --color-accent-dark: #010101;
 
   /* Shadows */
   --shadow-aesthetic: 0 3px 10px rgb(0 0 0 / 0.2);
@@ -836,7 +836,6 @@ ul {
 /* ------------------------------------------------------------
    9. FACILITY SERVICES SECTION
    ------------------------------------------------------------ */
-/* .facility-services { // section wrapper } */
 
 .services-grid {
   display: grid;
@@ -1097,11 +1096,12 @@ ul {
   margin: 0.75rem;
   font-size: 0.875rem;
   font-weight: 600;
-  color: color-mix(in srgb, var(--color-primary-900) 50%, transparent);
+  color: color-mix(in srgb, var(--color-primary-700) 50%, transparent);
 }
 
 .dark .rental-card-source {
-  color: color-mix(in srgb, var(--color-primary) 70%, transparent);
+  color: color-mix(in srgb, var(--color-primary-50) 70%, transparent);
+  margin: 0 1rem 1rem 0;
 }
 
 .rental-card-body {
@@ -1301,6 +1301,11 @@ ul {
 
 .footer-bottom a {
   font-weight: 600;
+}
+
+/* Section anchor offsets */
+section[id] {
+  scroll-margin-top: 7rem;
 }
 
 /* ------------------------------------------------------------
