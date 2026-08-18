@@ -1,7 +1,9 @@
 ---
+// src/layouts/Layout.astro
 import Navbar from "./Navbar.astro";
 import Footer from "./Footer.astro";
 import BackToTop from "../components/shared/BackToTop.astro";
+
 export interface Props {
   title: string;
   description?: string;
@@ -24,6 +26,22 @@ const { title } = Astro.props;
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/style/custom.css" />
+
+    <!-- Apply theme before paint to avoid flash -->
+    <script is:inline>
+      (function () {
+        var stored = localStorage.getItem("theme");
+        var prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        var isDark =
+          stored === "dark" ||
+          (!stored && prefersDark) ||
+          (stored === "system" && prefersDark);
+        if (isDark) document.documentElement.classList.add("dark");
+        else document.documentElement.classList.remove("dark");
+      })();
+    </script>
   </head>
   <body>
     <Navbar />
@@ -31,47 +49,72 @@ const { title } = Astro.props;
     <Footer />
     <BackToTop />
   </body>
+
   <script>
-    detectSystemTheme();
-    const switchTheme = document.querySelector(
-      "[data-switch-theme]",
-    ) as HTMLButtonElement;
-    switchTheme.addEventListener("click", (e) => {
-      e.preventDefault();
-      changeThemeManually();
-    });
-    function changeThemeManually() {
-      const t = localStorage.getItem("theme");
-      if (t === "light") changeThemeToDark();
-      else if (t === "dark") changeThemeToLight();
-      else
-        document.documentElement.classList.contains("dark")
-          ? changeThemeToLight()
-          : changeThemeToDark();
+    // Tri-state theme: system | light | dark
+    // Stores explicit values — never surprises user when OS switches at night
+
+    type Theme = "system" | "light" | "dark";
+
+    function getStoredTheme(): Theme {
+      const t = localStorage.getItem("theme") as Theme | null;
+      return t === "light" || t === "dark" ? t : "system";
     }
-    function detectSystemTheme(manual = false) {
-      if (
-        localStorage.getItem("theme") === "dark" ||
-        (!("theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-        if (manual) localStorage.setItem("theme", "dark");
+
+    function applyTheme(theme: Theme) {
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      const isDark = theme === "dark" || (theme === "system" && prefersDark);
+      document.documentElement.classList.toggle("dark", isDark);
+    }
+
+    function setTheme(theme: Theme) {
+      if (theme === "system") {
+        localStorage.removeItem("theme");
       } else {
-        document.documentElement.classList.remove("dark");
-        if (manual) localStorage.setItem("theme", "light");
+        localStorage.setItem("theme", theme);
       }
+      applyTheme(theme);
+      updateButtons(theme);
     }
-    function changeThemeToDark() {
-      localStorage.setItem("theme", "dark");
-      document.documentElement.classList.add("dark");
+
+    function updateButtons(theme: Theme) {
+      document
+        .querySelectorAll<HTMLButtonElement>("[data-theme-btn]")
+        .forEach((btn) => {
+          const isActive = btn.dataset.themeBtn === theme;
+          btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+        });
     }
-    function changeThemeToLight() {
-      localStorage.setItem("theme", "light");
-      document.documentElement.classList.remove("dark");
-    }
+
+    // Init
+    const current = getStoredTheme();
+    applyTheme(current);
+    updateButtons(current);
+
+    // Wire up buttons
+    document
+      .querySelectorAll<HTMLButtonElement>("[data-theme-btn]")
+      .forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const theme = btn.dataset.themeBtn as Theme;
+          setTheme(theme);
+        });
+      });
+
+    // Respond to OS changes when in system mode
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", () => {
+        if (getStoredTheme() === "system") {
+          applyTheme("system");
+        }
+      });
   </script>
+
   <script>
+    // Nav toggle
     const toggleMenu = document.querySelector(
       "[data-toggle-nav]",
     ) as HTMLButtonElement;
@@ -79,6 +122,7 @@ const { title } = Astro.props;
     const overlayNav = document.querySelector(
       "[data-nav-overlay]",
     ) as HTMLDivElement;
+
     if (toggleMenu) {
       toggleMenu.addEventListener("click", (e) => {
         e.preventDefault();
@@ -94,12 +138,14 @@ const { title } = Astro.props;
           navbar.style.height = "0px";
         }
       });
+
       navbar.addEventListener("click", () => {
         toggleMenu.setAttribute("data-open-nav", "false");
         overlayNav.setAttribute("data-is-visible", "false");
         document.body.classList.remove("nav-open");
         navbar.style.height = "0px";
       });
+
       overlayNav.addEventListener("click", () => {
         toggleMenu.setAttribute("data-open-nav", "false");
         overlayNav.setAttribute("data-is-visible", "false");

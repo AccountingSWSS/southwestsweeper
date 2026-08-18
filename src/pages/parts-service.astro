@@ -1,0 +1,259 @@
+---
+// src/pages/parts-service.astro
+import Layout from "../layouts/Layout.astro";
+import { partsServiceSection } from "../components/sections/parts-service/data.ts";
+---
+
+<Layout title="Parts & Service | Southwest Sweeper Sales">
+  <main id="main-content">
+    <section class="page-hero" aria-labelledby="page-heading">
+      <div class="container container--medium">
+        <h1 id="page-heading">Parts &amp; Service</h1>
+        <p class="lead">{partsServiceSection.subheading1_1}</p>
+        <p class="lead-accent">{partsServiceSection.subheading1_2}</p>
+      </div>
+    </section>
+
+    <section class="parts-list" aria-labelledby="parts-heading">
+      <div class="container container--medium">
+        <h2 id="parts-heading" class="sr-only">Parts and service details</h2>
+
+        <ul class="parts-items" role="list">
+          {
+            partsServiceSection.partsService.map((item, index) => (
+              <li
+                class={`parts-item ${index % 2 === 0 ? "parts-item--reverse" : ""}`}
+              >
+                <div class="parts-image">
+                  <img
+                    src={item.visual.src}
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    decoding="async"
+                    width="500"
+                    height="340"
+                  />
+                </div>
+                <div class="parts-body">
+                  <h3 class="parts-title">{item.title}</h3>
+                  <p class="parts-desc">{item.description}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class="parts-cta" aria-label="Contact us about parts and service">
+      <div class="container container--medium">
+        <p class="cta-text">{partsServiceSection.callToAction}</p>
+        <div class="cta-actions">
+          <a href="/contact" class="btn-cta">Contact Us</a>
+          <a href="/sales/inquiry" class="btn-outline">Submit an Inquiry</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  /* --- hero --- */
+  .page-hero {
+    background-color: var(--color-primary-900);
+    color: var(--color-accent-light);
+    padding: 4rem 0;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    margin: 0 0 1rem;
+    line-height: 1.1;
+  }
+
+  .lead {
+    font-size: 1.125rem;
+    color: var(--color-primary-200);
+    max-width: 52ch;
+    margin: 0 0 0.25rem;
+    line-height: 1.6;
+  }
+
+  .lead-accent {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-cta);
+    max-width: 52ch;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* --- list --- */
+  .parts-list {
+    padding: 4rem 0 6rem;
+    background-color: var(--bg-body);
+  }
+
+  .parts-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  .parts-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .parts-image {
+    width: 100%;
+    border-radius: 1rem;
+    overflow: hidden;
+    max-height: 320px;
+  }
+
+  .parts-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .parts-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .parts-title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--text-body);
+    margin: 0;
+  }
+
+  .parts-desc {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-base-dark-50);
+    margin: 0;
+  }
+
+  .dark .parts-desc {
+    color: var(--color-base-100);
+  }
+
+  /* --- alternating layout on wider screens --- */
+  @media (min-width: 768px) {
+    .parts-item {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .parts-image {
+      max-height: none;
+      height: 100%;
+    }
+
+    .parts-item--reverse .parts-image {
+      order: 2;
+    }
+
+    .parts-item--reverse .parts-body {
+      order: 1;
+    }
+  }
+
+  /* --- cta --- */
+  .parts-cta {
+    padding: 4rem 0;
+    background-color: var(--color-primary-50);
+    border-top: 1px solid var(--color-primary-200);
+  }
+
+  :global(.dark) .parts-cta {
+    background-color: var(--color-base-dark-900);
+    border-top-color: var(--color-primary-900);
+  }
+
+  .cta-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-body);
+    margin: 0 0 1.5rem;
+    max-width: 52ch;
+  }
+
+  :global(.dark) .cta-text {
+    color: var(--color-accent-light);
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-cta {
+    display: inline-block;
+    background-color: var(--color-primary-900);
+    color: var(--color-accent-light);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background-color 300ms linear;
+  }
+
+  .btn-cta:hover {
+    background-color: var(--color-primary-800);
+  }
+
+  .btn-cta:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+
+  .btn-outline {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--color-primary-300);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--color-primary-300);
+    text-decoration: none;
+    transition:
+      background-color 300ms linear,
+      color 300ms linear;
+  }
+
+  .btn-outline:hover {
+    background-color: var(--color-primary-900);
+    color: var(--color-accent-light);
+  }
+
+  .btn-outline:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+
+  .dark .btn-outline {
+    color: var(--color-primary-300);
+    border-color: var(--color-primary-300);
+  }
+
+  .dark .btn-outline:hover {
+    background-color: var(--color-primary-800);
+    color: var(--color-accent-light);
+    border-color: var(--color-primary-800);
+  }
+</style>

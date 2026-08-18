@@ -1,4 +1,4 @@
-import type { EntrySkeletonType, EntryFieldTypes } from "contentful";
+import type { EntryFieldTypes } from "contentful";
 
 export interface RentalItem {
   contentTypeId: "rentalItem";

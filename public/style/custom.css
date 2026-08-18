@@ -50,13 +50,13 @@
   --color-cta-950: #442604;
 
   /* Base (light backgrounds) */
-  --color-base: #f9f9f9;
-  --color-base-50: #f9f9f9;
-  --color-base-100: #efefef;
-  --color-base-200: #e6e6e6;
-  --color-base-300: #dbdbdb;
-  --color-base-400: #d1d1d1;
-  --color-base-500: #c7c7c7;
+  --color-base: #f0ede8;
+  --color-base-50: #f0ede8;
+  --color-base-100: #e8e4de;
+  --color-base-200: #dcd8d1;
+  --color-base-300: #cfc9c1;
+  --color-base-400: #c2bbb2;
+  --color-base-500: #b5ada3;
   --color-base-600: #bdbdbd;
   --color-base-700: #b3b3b3;
   --color-base-800: #a8a8a8;
@@ -102,9 +102,9 @@
   /* Semantic colour aliases — light mode */
   --bg-body: var(--color-base);
   --text-body: var(--color-accent);
-  --bg-footer: var(--color-base-200);
-  --bg-hero: var(--color-base-100);
-  --bg-card: var(--color-base);
+  --bg-footer: #e2ddd7;
+  --bg-hero: #e8e4de;
+  --bg-card: #f5f2ee;
   --fill-hero-svg: var(--color-base-100);
   --fill-card-svg: var(--color-base);
 }

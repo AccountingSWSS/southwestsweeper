@@ -1,7 +1,8 @@
 import imgVictory from "./assets/victory.webp";
 import imgKodiak from "./assets/kodiak.webp";
-import imgBucher from "./assets/bucher.webp";
+import imgGlobal from "./assets/global.webp";
 import imgSkavinjer from "./assets/skavinjer.webp";
+import imgPowerBoss from "./assets/powerboss6X.webp";
 import imgRss from "./assets/rss.webp";
 import imgDept from "./assets/parts.webp"
 
@@ -28,10 +29,16 @@ export const partsServiceSection = {
       visual: imgKodiak,
     },
     {
-      title: "Bucher Municipal",
+      title: "Global Environmental Products",
       description:
-        "Bucher Municipal doesn't just meet industry standards—they set them. Through innovative electrified vehicles with low emissions and comprehensive service support, Bucher enables Phoenix businesses to run profitable operations while building a more sustainable future. Their commitment to smart engineering and reliable partnerships means you get equipment that performs today and evolves with tomorrow's environmental demands, all backed by a company dedicated to creating efficient solutions that benefit your bottom line and our community.",
-      visual: imgBucher,
+        "Global Environmental Products is one of the world’s leading producers of specialized Street Cleaning Equipment. Global builds heavy-duty, purpose-built, tough street sweepers for demanding applications that are proudly manufactured in the USA.",
+      visual: imgGlobal,
+    },
+    {
+      title: "PowerBoss Sweepers",
+      description:
+        "Southwest Sweeper Sales operates PowerBoss sweepers that deliver big-machine performance without the premium operating costs. Our PowerBoss-equipped crews bring you the X4 Avenger and innovative MUV technology—machines engineered to outperform their class while we keep your costs predictable. Strong parts support means less downtime, more consistent service, and the reliability your property management schedule demands.",
+      visual: imgPowerBoss,
     },
     {
       title: "Skavin'jer Sweepers",

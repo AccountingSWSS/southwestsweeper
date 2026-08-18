@@ -25,19 +25,19 @@ export const servicesSectionData = {
     {
       title: "Industrial Sweeping",
       briefDescription:
-        "Maintain a pristine curb appeal and extend the lifespan of your pavement with our routine sweeping services. We efficiently remove trash, dirt, and abrasive debris that can degrade asphalt, ensuring a clean and welcoming environment for your customers and tenants.",
+        "Maintain a pristine curb appeal and extend the lifespan of your pavement with our routine sweeping services. We efficiently remove trash, dirt, and abrasive debris that can degrade asphalt, ensuring a clean and welcoming environment for your customers and tenants. Standard asphalt pavement lasts 20-30 years with proper maintenance. Early preventative maintenance has been shown to extend pavement life in ongoing studies.",
       visual: img1,
     },
     {
       title: "Parking Lot & Street Sweeping",
       briefDescription:
-        "Our heavy-duty street sweeping services ensure safe, debris-free roadways that comply with local environmental and storm water regulations. By preventing trash, sediment, and pollutants from entering storm drains, we help you maintain community standards and environmental responsibility.",
+        "Our heavy-duty street sweeping services ensure safe, debris-free roadways that comply with local environmental and storm water regulations. By preventing trash, sediment, and pollutants from entering storm drains, we help you maintain community standards and environmental responsibility. Once pavement reaches a critical deterioration point, the rate of decline accelerates dramatically - what took 75% of the pavement's life to deteriorate 40% will deteriorate another 40% in just 17% more time.",
       visual: img2,
     },
     {
       title: "Garage Sweeping & Scrubbing",
       briefDescription:
-        "Keep your parking structures safe and spotless with our dual-action sweeping and scrubbing process. We remove loose debris and deep-clean surfaces to eliminate hazardous oil spots, grease, tire marks, and built-up grime that standard sweeping cannot remove.",
+        "Keep your parking structures safe and spotless with our dual-action sweeping and scrubbing process. We remove loose debris and deep-clean surfaces to eliminate hazardous oil spots, grease, tire marks, and built-up grime that standard sweeping cannot remove. Timely maintenance can delay the need for resurfacing by years, with early intervention being far more cost-effective than waiting until severe deterioration occurs.",
       visual: img3,
     },
     {

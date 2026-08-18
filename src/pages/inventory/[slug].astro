@@ -14,7 +14,7 @@ export async function getStaticPaths() {
   }));
 }
 
-const { item, id } = Astro.props;
+const { item } = Astro.props;
 
 const imageUrl =
   item.image && "fields" in item.image && item.image.fields?.file?.url
