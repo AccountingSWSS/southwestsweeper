@@ -26,48 +26,12 @@ const grouped = items.reduce(
       <div class="container container--wide">
         <div class="section-header">
           <div class="title2"><h2>Equipment Rentals</h2></div>
-          <h1 class="title">Rental Pricing</h1>
+          <h3 class="title">Rental Pricing</h3>
           <p class="subtitle">
-            Flexible rental periods to fit your needs — by the day, week, or
-            month.
+            Our rentals are constantly evolving. Please contact us at
+            602-678-0496 for availability.
           </p>
         </div>
-
-        {
-          Object.entries(grouped).map(([category, rows]) => (
-            <section
-              class="rentals-table-section"
-              aria-labelledby={`cat-${category}`}
-            >
-              <h2 class="rentals-table-heading" id={`cat-${category}`}>
-                {category}
-              </h2>
-              <div class="rentals-table-wrap">
-                <table class="rentals-table">
-                  <caption class="sr-only">{category} pricing</caption>
-                  <thead>
-                    <tr>
-                      <th scope="col">Description</th>
-                      <th scope="col">Per Day</th>
-                      <th scope="col">Per Week</th>
-                      <th scope="col">Per Month</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {rows.map((row) => (
-                      <tr>
-                        <td>{row.description}</td>
-                        <td>${row.costPerDay}</td>
-                        <td>${row.costPerWeek}</td>
-                        <td>${row.costPerMonth}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </section>
-          ))
-        }
       </div>
     </div>
   </main>
