@@ -37,3 +37,13 @@ export interface SalesItem {
     sortOrder: EntryFieldTypes.Integer;
   };
 }
+
+export interface PartsServiceBrand {
+  contentTypeId: "partsServiceBrand";
+  fields: {
+    name: EntryFieldTypes.Text;
+    description: EntryFieldTypes.Text;
+    logo: EntryFieldTypes.AssetLink;
+    sortOrder: EntryFieldTypes.Integer;
+  };
+}

@@ -1,8 +1,8 @@
-import imgVictory from "./assets/victory.webp";
+import imgVictory from "./assets/vrx6570.webp";
 import imgKodiak from "./assets/kodiak.webp";
 import imgGlobal from "./assets/global.webp";
 import imgSkavinjer from "./assets/skavinjer.webp";
-import imgPowerBoss from "./assets/powerboss6X.webp";
+import imgPowerBoss from "./assets/powerbosssw9x.webp";
 import imgRss from "./assets/rss.webp";
 import imgDept from "./assets/parts.webp"
 
@@ -13,7 +13,7 @@ export const partsServiceSection = {
   partsService: [
     {
       title: "Our Parts and Service departments ",
-      description: "We maintain a full inventory to support the sweepers we sell and service. Customers can order parts for pickup or, in some cases, delivery. We carry parts for major brands including Allianz, Elgin, Tennant, Tymco, Schwarze, and many more.",
+      description: "We maintain a full inventory to support the sweepers we sell and service. Customers can order parts for pickup or, in some cases, delivery. We carry parts for major brands including We have available parts for these machines: Allianz, Athey, American Lincoln, Bucher, Elgin, Johnston, Madvac, MASCO/Mr. Air, Mobil, Nilfisk-Advance, Nite-hawk, PowerBoss, Python, RSS, Schwarze, SK Sweepers, Skavin’jer, Sweeprite, Tennant, Trek, Tymco, Victory, And many others",
       visual: imgDept,
     },
     {

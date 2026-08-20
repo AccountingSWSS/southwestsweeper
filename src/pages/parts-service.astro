@@ -1,7 +1,33 @@
 ---
 // src/pages/parts-service.astro
 import Layout from "../layouts/Layout.astro";
-import { partsServiceSection } from "../components/sections/parts-service/data.ts";
+import { contentfulClient } from "../lib/contentful";
+import type { PartsServiceBrand } from "../types/contentful";
+
+let brands: {
+  name: string;
+  description: string;
+  logo: string | null;
+  sortOrder: number;
+}[] = [];
+
+try {
+  const entries = await contentfulClient.getEntries<PartsServiceBrand>({
+    content_type: "partsServiceBrand",
+    order: ["fields.sortOrder"] as any,
+  });
+
+  brands = entries.items.map((item) => ({
+    name: item.fields.name as string,
+    description: item.fields.description as string,
+    logo: (item.fields.logo as any)?.fields?.file?.url
+      ? `https:${(item.fields.logo as any).fields.file.url}`
+      : null,
+    sortOrder: item.fields.sortOrder as number,
+  }));
+} catch (e) {
+  console.error("Failed to fetch partsServiceBrand entries:", e);
+}
 ---
 
 <Layout title="Parts & Service | Southwest Sweeper Sales">
@@ -9,46 +35,65 @@ import { partsServiceSection } from "../components/sections/parts-service/data.t
     <section class="page-hero" aria-labelledby="page-heading">
       <div class="container container--medium">
         <h1 id="page-heading">Parts &amp; Service</h1>
-        <p class="lead">{partsServiceSection.subheading1_1}</p>
-        <p class="lead-accent">{partsServiceSection.subheading1_2}</p>
+        <p class="lead">
+          We stock a full range of sweeper parts for the machines we sell and
+          service.
+        </p>
+        <p class="lead-accent">
+          Order for pickup. Supporting all major brands.
+        </p>
       </div>
     </section>
 
     <section class="parts-list" aria-labelledby="parts-heading">
       <div class="container container--medium">
-        <h2 id="parts-heading" class="sr-only">Parts and service details</h2>
+        <h2 id="parts-heading" class="sr-only">Parts and service brands</h2>
 
-        <ul class="parts-items" role="list">
-          {
-            partsServiceSection.partsService.map((item, index) => (
-              <li
-                class={`parts-item ${index % 2 === 0 ? "parts-item--reverse" : ""}`}
-              >
-                <div class="parts-image">
-                  <img
-                    src={item.visual.src}
-                    alt=""
-                    aria-hidden="true"
-                    loading="lazy"
-                    decoding="async"
-                    width="500"
-                    height="340"
-                  />
-                </div>
-                <div class="parts-body">
-                  <h3 class="parts-title">{item.title}</h3>
-                  <p class="parts-desc">{item.description}</p>
-                </div>
-              </li>
-            ))
-          }
-        </ul>
+        {
+          brands.length > 0 ? (
+            <ul class="parts-items" role="list">
+              {brands.map((brand, index) => (
+                <li
+                  class={`parts-item ${index % 2 === 0 ? "parts-item--reverse" : ""}`}
+                >
+                  {brand.logo && (
+                    <div class="parts-image">
+                      <img
+                        src={brand.logo}
+                        alt=""
+                        aria-hidden="true"
+                        loading="lazy"
+                        decoding="async"
+                        width="500"
+                        height="340"
+                      />
+                    </div>
+                  )}
+                  <div
+                    class={`parts-body ${!brand.logo ? "parts-body--full" : ""}`}
+                  >
+                    <h3 class="parts-title">{brand.name}</h3>
+                    <p class="parts-desc">{brand.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p class="parts-empty">
+              Parts and service information coming soon. Call us at
+              <a href="tel:6026780496">(602) 678-0496</a> for current
+              availability.
+            </p>
+          )
+        }
       </div>
     </section>
 
     <section class="parts-cta" aria-label="Contact us about parts and service">
       <div class="container container--medium">
-        <p class="cta-text">{partsServiceSection.callToAction}</p>
+        <p class="cta-text">
+          Explore Southwest Sweeper Sales parts and service departments.
+        </p>
         <div class="cta-actions">
           <a href="/contact" class="btn-cta">Contact Us</a>
           <a href="/sales/inquiry" class="btn-outline">Submit an Inquiry</a>
@@ -59,7 +104,6 @@ import { partsServiceSection } from "../components/sections/parts-service/data.t
 </Layout>
 
 <style>
-  /* --- hero --- */
   .page-hero {
     background-color: var(--color-primary-900);
     color: var(--color-accent-light);
@@ -90,7 +134,6 @@ import { partsServiceSection } from "../components/sections/parts-service/data.t
     line-height: 1.6;
   }
 
-  /* --- list --- */
   .parts-list {
     padding: 4rem 0 6rem;
     background-color: var(--bg-body);
@@ -132,6 +175,10 @@ import { partsServiceSection } from "../components/sections/parts-service/data.t
     gap: 0.75rem;
   }
 
+  .parts-body--full {
+    grid-column: 1 / -1;
+  }
+
   .parts-title {
     font-size: 1.375rem;
     font-weight: 700;
@@ -150,7 +197,25 @@ import { partsServiceSection } from "../components/sections/parts-service/data.t
     color: var(--color-base-100);
   }
 
-  /* --- alternating layout on wider screens --- */
+  .parts-empty {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-base-dark-50);
+  }
+
+  .dark .parts-empty {
+    color: var(--color-base-100);
+  }
+
+  .parts-empty a {
+    color: var(--color-primary-700);
+    text-decoration: underline;
+  }
+
+  .dark .parts-empty a {
+    color: var(--color-primary-400);
+  }
+
   @media (min-width: 768px) {
     .parts-item {
       grid-template-columns: 1fr 1fr;
@@ -170,7 +235,6 @@ import { partsServiceSection } from "../components/sections/parts-service/data.t
     }
   }
 
-  /* --- cta --- */
   .parts-cta {
     padding: 4rem 0;
     background-color: var(--color-primary-50);
@@ -224,12 +288,12 @@ import { partsServiceSection } from "../components/sections/parts-service/data.t
   .btn-outline {
     display: inline-block;
     background-color: transparent;
-    color: var(--color-primary-300);
+    color: var(--color-primary-700);
     font-weight: 700;
     font-size: 1rem;
     padding: 0.75rem 1.75rem;
     border-radius: 0.5rem;
-    border: 2px solid var(--color-primary-300);
+    border: 2px solid var(--color-primary-700);
     text-decoration: none;
     transition:
       background-color 300ms linear,
@@ -237,7 +301,7 @@ import { partsServiceSection } from "../components/sections/parts-service/data.t
   }
 
   .btn-outline:hover {
-    background-color: var(--color-primary-900);
+    background-color: var(--color-primary-700);
     color: var(--color-accent-light);
   }
 

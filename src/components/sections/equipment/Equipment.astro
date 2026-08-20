@@ -1,0 +1,82 @@
+---
+// src/components/sections/equipment/Equipment.astro
+// Teaser section linking to the full /equipment page
+import Container from "../../shared/Container.astro";
+import Title2 from "../../shared/Title2.astro";
+import SubTitle2 from "../../shared/SubTitle2.astro";
+import GradientText from "../../shared/GradientText.astro";
+
+export interface Props {
+  className?: string;
+}
+const { className = "" } = Astro.props;
+---
+
+<section id="equipment" class={`equipment-section ${className}`}>
+  <Container className="section-header">
+    <Title2>Equipment</Title2>
+    <SubTitle2>
+      Browse our full range of <GradientText
+        >sweeping and scrubbing equipment</GradientText
+      >
+    </SubTitle2>
+  </Container>
+  <Container>
+    <div class="equipment-teaser">
+      <p class="equipment-desc">
+        Southwest Sweeper Sales carries a wide selection of street sweepers,
+        parking lot sweepers, industrial sweepers, scrubbers, and specialty
+        equipment. Contact our sales team for current availability and pricing.
+      </p>
+      <a href="/equipment" class="btn-cta">Browse Equipment</a>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .equipment-section {
+    padding: 4rem 0;
+  }
+
+  .equipment-teaser {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    max-width: 68ch;
+    margin-inline: auto;
+    text-align: center;
+    align-items: center;
+  }
+
+  .equipment-desc {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: var(--color-base-dark-300);
+  }
+
+  .dark .equipment-desc {
+    color: var(--color-base-100);
+  }
+
+  .btn-cta {
+    display: inline-block;
+    background-color: var(--color-primary-900);
+    color: var(--color-accent-light);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background-color 300ms linear;
+  }
+
+  .btn-cta:hover {
+    background-color: var(--color-primary-800);
+  }
+
+  .btn-cta:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+</style>
