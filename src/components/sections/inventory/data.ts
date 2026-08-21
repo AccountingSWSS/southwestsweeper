@@ -1,5 +1,5 @@
 import img1 from "./assets/globalm4hsd.png";
-import img2 from "./assets/gx12.png";
+import img2 from "./assets/victorydf.png";
 import img3 from "./assets/pb.png";
 
 export const inventorySection = {

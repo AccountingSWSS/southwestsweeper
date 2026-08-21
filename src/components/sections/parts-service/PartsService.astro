@@ -24,28 +24,30 @@ const { className = "" } = Astro.props;
   </Container>
   <Container>
     {
-      partsServiceSection.partsService.map((solution, index: number) => (
-        <div class="alternating-section-item">
-          <div
-            class={`alternating-row ${index % 2 === 0 ? "alternating-row--reverse" : ""}`}
-          >
-            <div class="alternating-image-col">
-              <div class="alternating-image-wrap">
-                <LazyImage
-                  src={solution.visual}
-                  alt={solution.title}
-                  width="500"
-                  class="rounded-3xl object-cover h-full"
-                />
+      partsServiceSection.partsService
+        .slice(0, 1)
+        .map((solution, index: number) => (
+          <div class="alternating-section-item">
+            <div
+              class={`alternating-row ${index % 2 === 0 ? "alternating-row--reverse" : ""}`}
+            >
+              <div class="alternating-image-col">
+                <div class="alternating-image-wrap">
+                  <LazyImage
+                    src={solution.visual}
+                    alt={solution.title}
+                    width="500"
+                    class="rounded-3xl object-cover h-full"
+                  />
+                </div>
+              </div>
+              <div class="alternating-text-col">
+                <Title3>{solution.title}</Title3>
+                <Paragraph className="mt-3">{solution.description}</Paragraph>
               </div>
             </div>
-            <div class="alternating-text-col">
-              <Title3>{solution.title}</Title3>
-              <Paragraph className="mt-3">{solution.description}</Paragraph>
-            </div>
           </div>
-        </div>
-      ))
+        ))
     }
   </Container>
 </section>

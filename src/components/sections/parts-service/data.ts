@@ -13,7 +13,7 @@ export const partsServiceSection = {
   partsService: [
     {
       title: "Our Parts and Service departments ",
-      description: "We maintain a full inventory to support the sweepers we sell and service. Customers can order parts for pickup or, in some cases, delivery. We carry parts for major brands including We have available parts for these machines: Allianz, Athey, American Lincoln, Bucher, Elgin, Johnston, Madvac, MASCO/Mr. Air, Mobil, Nilfisk-Advance, Nite-hawk, PowerBoss, Python, RSS, Schwarze, SK Sweepers, Skavin’jer, Sweeprite, Tennant, Trek, Tymco, Victory, And many others",
+      description: "We maintain a full inventory to support the sweepers we sell and service. Customers can order parts for pickup or, in some cases, delivery. We carry parts for major brands including: Allianz, Athey, American Lincoln, Bucher, Elgin, Johnston, Madvac, MASCO/Mr. Air, Mobil, Nilfisk-Advance, Nite-hawk, PowerBoss, Python, RSS, Schwarze, SK Sweepers, Skavin’jer, Sweeprite, Tennant, Trek, Tymco, Victory, and many others.",
       visual: imgDept,
     },
     {

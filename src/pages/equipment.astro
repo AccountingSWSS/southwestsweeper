@@ -1,50 +1,10 @@
 ---
-// src/pages/equipment.astro
-// Placeholder — content and categories to be added when ready
 import Layout from "../layouts/Layout.astro";
+import LazyImage from "../components/shared/LazyImage.astro";
+import Container from "../components/shared/Container.astro";
+import { partsServiceSection } from "../components/sections/parts-service/data.ts";
 
-const categories = [
-  {
-    id: "street-sweepers",
-    title: "Street Sweepers",
-    items: [
-      {
-        name: "Placeholder Model",
-        description: "Equipment details coming soon.",
-      },
-    ],
-  },
-  {
-    id: "parking-lot-sweepers",
-    title: "Parking Lot Sweepers",
-    items: [
-      {
-        name: "Placeholder Model",
-        description: "Equipment details coming soon.",
-      },
-    ],
-  },
-  {
-    id: "industrial-sweepers",
-    title: "Industrial Sweepers & Scrubbers",
-    items: [
-      {
-        name: "Placeholder Model",
-        description: "Equipment details coming soon.",
-      },
-    ],
-  },
-  {
-    id: "specialty-equipment",
-    title: "Specialty Equipment",
-    items: [
-      {
-        name: "Placeholder Model",
-        description: "Equipment details coming soon.",
-      },
-    ],
-  },
-];
+const brands = partsServiceSection.partsService.slice(1);
 ---
 
 <Layout title="Equipment | Southwest Sweeper Sales">
@@ -53,50 +13,40 @@ const categories = [
       <div class="container container--medium">
         <h1 id="page-heading">Equipment</h1>
         <p class="lead">
-          Browse our full range of sweeping and scrubbing equipment. New
-          listings coming soon — contact our sales team for current
-          availability.
+          Browse the brands and equipment we sell and service. Contact our sales
+          team for current availability and pricing.
         </p>
       </div>
     </section>
 
     <section class="equipment-section" aria-labelledby="equipment-heading">
-      <div class="container container--medium">
-        <h2 id="equipment-heading" class="sr-only">Equipment categories</h2>
-
-        <nav class="category-nav" aria-label="Jump to category">
-          {
-            categories.map((cat) => (
-              <a href={`#${cat.id}`} class="category-pill">
-                {cat.title}
-              </a>
-            ))
-          }
-        </nav>
-
-        <div class="categories">
-          {
-            categories.map((cat) => (
-              <div id={cat.id} class="category">
-                <h3 class="category-title">{cat.title}</h3>
-                <ul class="equipment-list" role="list">
-                  {cat.items.map((item) => (
-                    <li class="equipment-card">
-                      <div class="equipment-image" aria-hidden="true">
-                        <div class="image-placeholder" />
-                      </div>
-                      <div class="equipment-body">
-                        <h4 class="equipment-name">{item.name}</h4>
-                        <p class="equipment-desc">{item.description}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+      <Container>
+        <h2 id="equipment-heading" class="sr-only">Equipment brands</h2>
+        {
+          brands.map((brand, index) => (
+            <div class="alternating-section-item">
+              <div
+                class={`alternating-row ${index % 2 === 0 ? "alternating-row--reverse" : ""}`}
+              >
+                <div class="alternating-image-col">
+                  <div class="alternating-image-wrap">
+                    <LazyImage
+                      src={brand.visual}
+                      alt={brand.title}
+                      width="500"
+                      class="rounded-3xl object-cover h-full"
+                    />
+                  </div>
+                </div>
+                <div class="alternating-text-col">
+                  <h3 class="brand-title">{brand.title}</h3>
+                  <p class="brand-desc">{brand.description}</p>
+                </div>
               </div>
-            ))
-          }
-        </div>
-      </div>
+            </div>
+          ))
+        }
+      </Container>
     </section>
 
     <section class="equipment-cta" aria-label="Contact us about equipment">
@@ -138,168 +88,81 @@ const categories = [
 
   /* --- section --- */
   .equipment-section {
-    padding: 4rem 0;
+    padding: 4rem 0 6rem;
     background-color: var(--bg-body);
   }
 
-  /* --- category jump nav --- */
-  .category-nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-bottom: 3rem;
-  }
-
-  .category-pill {
-    display: inline-block;
-    background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
-    border: 1px solid var(--color-primary);
-    color: var(--color-primary-800);
-    font-size: 0.875rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 0.375rem 1rem;
-    border-radius: 9999px;
-    text-decoration: none;
-    transition:
-      background-color 300ms linear,
-      color 300ms linear;
-  }
-
-  .dark .category-pill {
-    color: var(--color-primary-300);
-  }
-
-  .category-pill:hover {
-    background-color: var(--color-primary);
-    color: var(--color-accent-light);
-  }
-
-  .category-pill:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 3px;
-  }
-
-  /* --- categories --- */
-  .categories {
+  /* --- brand list --- */
+  .brand-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
     gap: 4rem;
   }
 
-  .category {
-    scroll-margin-top: 6rem;
-  }
-
-  .category-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-body);
-    margin: 0 0 1.5rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 2px solid var(--color-primary-200);
-  }
-
-  .dark .category-title {
-    border-bottom-color: var(--color-primary-600);
-  }
-
-  /* --- equipment list --- */
-  .equipment-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .brand-item {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
+    align-items: center;
   }
 
-  @media (min-width: 640px) {
-    .equipment-list {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .equipment-list {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  /* --- equipment card --- */
-  .equipment-card {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--bg-card);
-    border: 1px solid var(--color-base-200);
-    border-radius: 0.5rem;
+  .brand-image {
+    width: 100%;
+    border-radius: 1rem;
     overflow: hidden;
-    box-shadow: var(--shadow-lg);
+    max-height: 320px;
   }
 
-  .dark .equipment-card {
-    border-color: var(--color-base-dark-700);
-  }
-
-  .equipment-image {
-    width: 100%;
-    height: 180px;
-    background-color: var(--color-base-200);
-  }
-
-  .dark .equipment-image {
-    background-color: var(--color-base-dark-600);
-  }
-
-  .image-placeholder {
+  .brand-image img {
     width: 100%;
     height: 100%;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      color-mix(in srgb, var(--color-primary) 15%, transparent) 10px,
-      color-mix(in srgb, var(--color-primary) 15%, transparent) 20px
-    );
+    object-fit: cover;
+    display: block;
   }
 
-  .dark .image-placeholder {
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      color-mix(in srgb, var(--color-primary) 15%, transparent) 10px,
-      color-mix(in srgb, var(--color-primary) 15%, transparent) 20px
-    );
-  }
-
-  .equipment-body {
-    padding: 1.25rem;
+  .brand-body {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    flex: 1;
+    gap: 0.75rem;
   }
 
-  .equipment-name {
-    font-size: 1rem;
+  .brand-title {
+    font-size: 1.5rem;
     font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
     color: var(--text-body);
-    margin: 0;
   }
 
-  .equipment-desc {
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    color: var(--text-body);
-    margin: 0;
+  .brand-desc {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-base-dark-300);
   }
 
-  .dark .equipment-desc {
+  :global(.dark) .brand-desc {
     color: var(--color-base-100);
+  }
+  @media (min-width: 768px) {
+    .brand-item {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .brand-image {
+      max-height: none;
+      height: 100%;
+    }
+
+    .brand-item--reverse .brand-image {
+      order: 2;
+    }
+
+    .brand-item--reverse .brand-body {
+      order: 1;
+    }
   }
 
   /* --- cta --- */
@@ -356,12 +219,12 @@ const categories = [
   .btn-outline {
     display: inline-block;
     background-color: transparent;
-    color: var(--color-primary-300);
+    color: var(--color-primary-700);
     font-weight: 700;
     font-size: 1rem;
     padding: 0.75rem 1.75rem;
     border-radius: 0.5rem;
-    border: 2px solid var(--color-primary-300);
+    border: 2px solid var(--color-primary-700);
     text-decoration: none;
     transition:
       background-color 300ms linear,
@@ -369,7 +232,7 @@ const categories = [
   }
 
   .btn-outline:hover {
-    background-color: var(--color-primary-900);
+    background-color: var(--color-primary-700);
     color: var(--color-accent-light);
   }
 
