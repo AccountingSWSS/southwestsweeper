@@ -8,13 +8,14 @@ const currentPath = Astro.url.pathname;
 const isHome = currentPath === "/";
 
 const footerNav1 = [
-  { itemText: "Facility Services", itemLink: isHome ? "#facility-services" : "/facility-services", },
-  { itemText: "Rentals", itemLink: isHome ? "#rentals" : "/rentals" },
-  { itemText: "Inventory", itemLink: isHome ? "#inventory" : "/inventory" },
+
+  { itemText: "Facility Services", itemLink: "/facility-services", },
+  { itemText: "Rentals", itemLink: "/rentals" },
+  { itemText: "Inventory", itemLink: "/inventory" },
 ];
 const footerSupport = [
-  { itemText: "Parts & Service", itemLink: isHome ? "#parts-service" : "/parts-service", },
-  { itemText: "Sales", itemLink: "/sales" },
+  { itemText: "Our Brands", itemLink: "/our-brands" },
+  { itemText: "Parts & Service", itemLink: "/parts-service", },
   { itemText: "Contact", itemLink: "/contact" },
 ];
 const footerCompany = [
@@ -55,10 +56,11 @@ const footerLegal = [
     <div class="footer-bottom">
       <Container className="container--wide">
         <div class="footer-bottom-inner">
-          <div>
+          <p>
             &copy; 1975 - <span id="year"></span>, Southwest Sweeper Sales. All
             rights reserved.
-          </div>
+          </p>
+          <p>Produced by <a href="https://toddl.dev" target="_blank" class="footer-nav">Todd Libby</a></p>
         </div>
       </Container>
     </div>

@@ -160,7 +160,6 @@ svg {
 
 a {
   color: inherit;
-  text-decoration: none;
 }
 
 ul {
@@ -1274,6 +1273,8 @@ ul {
 }
 
 .footer-nav a {
+  color: var(--text-body);
+  text-decoration: underline;
   transition: color 300ms;
 }
 
@@ -1282,7 +1283,7 @@ ul {
 }
 
 .footer-bottom {
-  padding-block: 0.5rem;
+  padding-block: 5rem;
   position: relative;
 }
 
