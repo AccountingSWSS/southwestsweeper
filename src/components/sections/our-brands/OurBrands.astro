@@ -1,10 +1,26 @@
 ---
-// src/components/sections/equipment/Equipment.astro
-// Teaser section linking to the full /equipment page
+// src/components/sections/our-brands/OurBrands.astro
+// Brand logo grid for the home page
 import Container from "../../shared/Container.astro";
 import Title2 from "../../shared/Title2.astro";
 import SubTitle2 from "../../shared/SubTitle2.astro";
 import GradientText from "../../shared/GradientText.astro";
+
+import skavinjer from "./assets/skavinjer.png";
+import rss from "./assets/rss.png";
+import powerboss from "./assets/powerboss.png";
+import global from "./assets/global.png";
+import kodiak from "./assets/kodiak.png";
+import victory from "./assets/victory.png";
+
+const brands = [
+  { name: "Victory Sweepers / Roots Multiclean", logo: victory },
+  { name: "Kodiak Equipment", logo: kodiak },
+  { name: "Global Environmental Products", logo: global },
+  { name: "PowerBoss Sweepers", logo: powerboss },
+  { name: "Skavin'jer Sweepers", logo: skavinjer },
+  { name: "RSS Equipment", logo: rss },
+];
 
 export interface Props {
   className?: string;
@@ -12,50 +28,121 @@ export interface Props {
 const { className = "" } = Astro.props;
 ---
 
-<section id="equipment" class={`equipment-section ${className}`}>
+<section id="our-brands" class={`our-brands-section ${className}`}>
   <Container className="section-header">
     <Title2>Our Brands</Title2>
     <SubTitle2>
-      Browse our full range of <GradientText
-        >cleaning equipment</GradientText
-      >
+      Browse our full range of <GradientText>cleaning equipment</GradientText>
     </SubTitle2>
   </Container>
+
   <Container>
-    <div class="equipment-teaser">
-      <p class="equipment-desc">
+    <ul class="brand-logo-grid" role="list">
+      {
+        brands.map((brand) => (
+          <li class="brand-logo-item">
+            <img
+              src={brand.logo.src}
+              alt={brand.name}
+              loading="lazy"
+              decoding="async"
+              width={brand.logo.width}
+              height={brand.logo.height}
+              class="brand-logo-img"
+            />
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="brand-teaser">
+      <p class="brand-desc">
         Southwest Sweeper Sales carries a wide selection of street sweepers,
         parking lot sweepers, industrial sweepers, scrubbers, and specialty
         equipment. Contact our sales team for current availability and pricing.
       </p>
-      <a href="/our-brands" class="btn-cta">Browse Our Brands</a>
+      <a href="/equipment" class="btn-cta">Browse Our Brands</a>
     </div>
   </Container>
 </section>
 
 <style>
-  .equipment-section {
+  .our-brands-section {
     padding: 4rem 0;
   }
 
-  .equipment-teaser {
+  /* --- logo grid --- */
+  .brand-logo-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 3rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    align-items: center;
+    justify-items: center;
+  }
+
+  @media (min-width: 640px) {
+    .brand-logo-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .brand-logo-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+
+  .brand-logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--color-base-200);
+    border-radius: 0.5rem;
+    width: 100%;
+    min-height: 100px;
+  }
+
+  .dark .brand-logo-item {
+    border-color: var(--color-base-dark-700);
+    background-color: var(--color-base-dark-800);
+  }
+
+  :global(.dark) .brand-logo-item:first-child .brand-logo-img {
+    filter: brightness(0) invert(1);
+  }
+
+  .brand-logo-img {
+    width: auto;
+    height: 60px;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* --- teaser --- */
+  .brand-teaser {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 2rem;
     max-width: 68ch;
     margin-inline: auto;
     text-align: center;
-    align-items: center;
   }
 
-  .equipment-desc {
+  .brand-desc {
     font-size: 1.125rem;
     line-height: 1.75;
     color: var(--color-base-dark-300);
+    margin: 0;
   }
 
-  .dark .equipment-desc {
+  .dark .brand-desc {
     color: var(--color-base-100);
   }
 
