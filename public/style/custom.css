@@ -551,12 +551,20 @@ ul {
   width: 1.5rem;
   height: 2px;
   border-radius: 9999px;
-  background-color: #000;
+  background-color: var(--color-primary-900);
   transition: transform 300ms linear, opacity 300ms linear;
 }
 
 .dark .nav-toggle span {
-  background-color: #fff;
+  background-color: var(--color-accent-light);
+}
+
+[data-toggle-nav][data-open-nav="true"] span {
+  background-color: var(--color-primary-900) !important;
+}
+
+.dark [data-toggle-nav][data-open-nav="true"] span {
+  background-color: var(--color-accent-light) !important;
 }
 
 #line2 {
