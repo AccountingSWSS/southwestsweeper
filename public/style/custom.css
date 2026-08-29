@@ -144,7 +144,7 @@ body {
   overflow-y: auto;
 }
 
-html.nav-open {
+body.nav-open {
   overflow: hidden;
 }
 
@@ -468,16 +468,16 @@ ul {
 }
 
 .nav-drawer {
-  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
   height: 0;
   overflow: hidden;
   flex-direction: column;
   gap: 1.5rem 1rem;
-  top: 100%;
-  right: 0;
-  left: 0;
-  width: 100vw;
-  position: absolute;
+  display: flex;
   background-color: var(--bg-body);
   border-inline: 1px solid var(--color-base-200);
   transition: height 300ms linear;
@@ -565,7 +565,7 @@ ul {
 }
 
 [data-toggle-nav][data-open-nav="true"] span {
-  background-color: var(--text-body);
+  background-color: var(--text-body) !important;
 }
 
 [data-toggle-nav][data-open-nav="true"] #line1 {
