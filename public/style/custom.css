@@ -642,6 +642,25 @@ ul {
 }
 
 @media (max-width: 767px) {
+  .hero-image-wrap {
+    padding-top: 0;
+    width: 100%;
+    display: block;
+  }
+
+  .hero-image-wrap picture {
+    display: block;
+    width: 100%;
+  }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
   .hero-content {
     padding: 2rem 1.5rem;
   }
