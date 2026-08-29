@@ -144,11 +144,8 @@ body {
   overflow-y: auto;
 }
 
-body.nav-open {
+html.nav-open {
   overflow: hidden;
-  position: fixed;
-  width: 100%;
-  padding-right: var(--scrollbar-width, 0px);
 }
 
 img,
@@ -569,10 +566,6 @@ ul {
 
 [data-toggle-nav][data-open-nav="true"] span {
   background-color: var(--text-body);
-}
-
-.dark [data-toggle-nav][data-open-nav="true"] span {
-  background-color: var(--color-accent-light);
 }
 
 [data-toggle-nav][data-open-nav="true"] #line1 {

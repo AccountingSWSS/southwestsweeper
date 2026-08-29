@@ -123,29 +123,17 @@ const { title } = Astro.props;
       "[data-nav-overlay]",
     ) as HTMLDivElement;
 
-    let scrollY = 0;
-
     function openNav() {
-      const scrollbarWidth =
-        window.innerWidth - document.documentElement.clientWidth;
-      document.documentElement.style.setProperty(
-        "--scrollbar-width",
-        `${scrollbarWidth}px`,
-      );
-      scrollY = window.scrollY;
-      document.body.style.top = `-${scrollY}px`;
-      document.body.classList.add("nav-open");
+      document.documentElement.classList.add("nav-open");
       toggleMenu.setAttribute("data-open-nav", "true");
       overlayNav.setAttribute("data-is-visible", "true");
       navbar.style.height = `${navbar.scrollHeight}px`;
     }
 
     function closeNav() {
-      document.body.classList.remove("nav-open");
-      document.body.style.top = "";
+      document.documentElement.classList.remove("nav-open");
       toggleMenu.setAttribute("data-open-nav", "false");
       overlayNav.setAttribute("data-is-visible", "false");
-      window.scrollTo(0, scrollY);
       navbar.style.height = "0px";
     }
 
