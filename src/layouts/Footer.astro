@@ -4,18 +4,14 @@ import Container from "../components/shared/Container.astro";
 import FooterNav from "../components/shared/FooterNav.astro";
 import Paragraph from "../components/shared/Paragraph.astro";
 
-const currentPath = Astro.url.pathname;
-const isHome = currentPath === "/";
-
 const footerNav1 = [
-
-  { itemText: "Facility Services", itemLink: "/facility-services", },
+  { itemText: "Facility Services", itemLink: "/facility-services" },
   { itemText: "Rentals", itemLink: "/rentals" },
   { itemText: "Inventory", itemLink: "/inventory" },
 ];
 const footerSupport = [
   { itemText: "Our Brands", itemLink: "/our-brands" },
-  { itemText: "Parts & Service", itemLink: "/parts-service", },
+  { itemText: "Parts & Service", itemLink: "/parts-service" },
   { itemText: "Contact", itemLink: "/contact" },
 ];
 const footerCompany = [
@@ -38,9 +34,7 @@ const footerLegal = [
             <a href="/">
               <span class="footer-brand-name">Southwest Sweeper Sales</span>
             </a>
-            <Paragraph className="mt-8"
-              >Serving the Arizona Valley since 1975.</Paragraph
-            >
+            <p class="footer-tagline">Serving the Arizona Valley since 1975.</p>
           </div>
         </div>
         <GroupFooterNav>
@@ -60,7 +54,12 @@ const footerLegal = [
             &copy; 1975 - <span id="year"></span>, Southwest Sweeper Sales. All
             rights reserved.
           </p>
-          <p>Produced by <a href="https://toddl.dev" target="_blank" class="footer-nav">Todd Libby</a></p>
+          <p>
+            Produced by <a
+              href="https://toddl.dev"
+              target="_blank"
+              class="footer-nav">Todd Libby</a>
+          </p>
         </div>
       </Container>
     </div>
