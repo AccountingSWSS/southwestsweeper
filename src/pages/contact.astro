@@ -1,4 +1,4 @@
-                                                                                                        ---
+---
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -26,12 +26,13 @@ import Layout from "../layouts/Layout.astro";
               </li>
               <li>
                 <span class="contact-label">Email</span>
-                <p class="contact-value">info@southwestsweepersales.com</p
-                >
+                <p class="contact-value">info@southwestsweepersales.com</p>
               </li>
               <li>
                 <span class="contact-label">Hours</span>
-                <span class="contact-value">Monday - Friday, 7:00am - 4:00pm (Arizona Time)</span>
+                <span class="contact-value"
+                  >Monday - Friday, 7:00am - 4:00pm (Arizona Time)</span
+                >
               </li>
             </ul>
           </div>
@@ -39,10 +40,18 @@ import Layout from "../layouts/Layout.astro";
           <div class="contact-form-wrap">
             <form
               id="contact-form"
-              class="contact-form"
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
               novalidate
               aria-label="Contact form"
+              class="contact-form"
             >
+              <p hidden>
+                <label>Do not fill this out: <input name="bot-field" /></label>
+              </p>
+              <input type="hidden" name="form-name" value="contact" />
               <div class="form-row">
                 <div class="form-group">
                   <label for="first-name"
@@ -283,14 +292,12 @@ import Layout from "../layouts/Layout.astro";
     successMsg.hidden = true;
     errorBanner.hidden = true;
 
-    const data = Object.fromEntries(new FormData(form));
+    const data = new FormData(form);
 
     try {
-      // Replace with your actual form endpoint (Netlify Forms, Resend, etc.)
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: data,
       });
 
       if (!res.ok) throw new Error("Submit failed");
