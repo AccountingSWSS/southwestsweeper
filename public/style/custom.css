@@ -577,6 +577,12 @@ ul {
   transform: translateY(-0.375rem) rotate(-40deg);
 }
 
+@media (max-width: 1023px) {
+  .nav-drawer .nav-item a {
+    color: var(--text-body);
+  }
+}
+
 @media (min-width: 1024px) {
   .nav-drawer {
     display: flex !important;
@@ -657,6 +663,25 @@ ul {
   display: grid;
   grid-template-columns: 1fr;
   background-color: var(--bg-hero);
+}
+
+@media (max-width: 767px) {
+  .hero-grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-image-wrap {
+    width: 100%;
+    padding-top: 0;
+  }
+
+  .hero-image-wrap img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+  }
 }
 
 @media (min-width: 768px) {
