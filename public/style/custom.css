@@ -148,6 +148,7 @@ body.nav-open {
   overflow: hidden;
   position: fixed;
   width: 100%;
+  padding-right: var(--scrollbar-width, 0px);
 }
 
 img,
@@ -564,6 +565,10 @@ ul {
 
 #line3 {
   margin-top: 0.25rem;
+}
+
+[data-toggle-nav][data-open-nav="true"] span {
+  background-color: var(--text-body);
 }
 
 [data-toggle-nav][data-open-nav="true"] #line1 {

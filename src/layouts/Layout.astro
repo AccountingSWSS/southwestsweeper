@@ -126,6 +126,12 @@ const { title } = Astro.props;
     let scrollY = 0;
 
     function openNav() {
+      const scrollbarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
+      document.documentElement.style.setProperty(
+        "--scrollbar-width",
+        `${scrollbarWidth}px`,
+      );
       scrollY = window.scrollY;
       document.body.style.top = `-${scrollY}px`;
       toggleMenu.setAttribute("data-open-nav", "true");
