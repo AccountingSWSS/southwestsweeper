@@ -469,7 +469,7 @@ ul {
 
 .nav-drawer {
   position: fixed;
-  top: 0;
+  top: 5.5rem;
   left: 0;
   right: 0;
   width: 100vw;
