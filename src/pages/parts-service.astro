@@ -91,8 +91,7 @@ try {
           Explore Southwest Sweeper Sales parts and service departments.
         </p>
         <p class="cta-phone">
-          <a href="tel:6026780496">(602) 678-0496</a>
-          <span class="cta-hours">Monday - Friday: 7:00am - 4:00pm</span>
+          Give us a call at (602) 678-0496 / Monday - Friday: 7:00am - 4:00pm
         </p>
       </div>
     </section>
@@ -254,6 +253,34 @@ try {
 
   :global(.dark) .cta-text {
     color: var(--color-accent-light);
+  }
+
+  .cta-phone {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0;
+  }
+
+  .cta-phone a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-cta);
+    text-decoration: none;
+  }
+
+  .cta-phone a:hover {
+    text-decoration: underline;
+  }
+
+  .cta-hours {
+    font-size: 1rem;
+    color: var(--color-base-dark-50);
+  }
+
+  :global(.dark) .cta-hours {
+    color: var(--color-base-300);
   }
 
   .cta-actions {
