@@ -377,6 +377,7 @@ ul {
   cursor: pointer;
   transition: background-color 300ms linear;
   outline: none;
+  text-decoration: none;
 }
 
 .btn-cta:hover {
