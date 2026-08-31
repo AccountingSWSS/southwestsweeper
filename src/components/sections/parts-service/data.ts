@@ -19,13 +19,13 @@ export const partsServiceSection = {
     {
       title: "Victory Sweepers / Roots Multiclean",
       description:
-        "The Roots Multiclean, Inc. Victrory Sweepers Division was established in 2017. For over 25 years the parent company, Roots Multiclean Ltd., India, which manufactures & sells a complete range of roadway and floor cleaning solutions, has emphasized products that help build a more hygienic and cleaner world. This effort is further supported by Roots Group, which has over 40 years of experience manufacturing engineering products. Prior to its purchase by Roots, for more than 12 years the Victory Sweepers brand of parking lot and street sweepers were known in the USA for their durability and superior performance.",
+        "The Roots Multiclean, Inc. Victory Sweepers Division was established in 2017. For over 25 years the parent company, Roots Multiclean Ltd., India, which manufactures & sells a complete range of roadway and floor cleaning solutions, has emphasized products that help build a more hygienic and cleaner world. This effort is further supported by Roots Group, which has over 40 years of experience manufacturing engineering products. Prior to its purchase by Roots, for more than 12 years the Victory Sweepers brand of parking lot and street sweepers were known in the USA for their durability and superior performance.",
       visual: imgVictory,
     },
     {
       title: "Kodiak Equipment",
       description:
-        "Kodiak Cleaning Equipment specializes in durable equipment that will last for years to come. If you are tired of purchasing a new floor scrubber every year, you have come to the right place! We would love to get in contact with you and provide a complimentary Site Survey and Demonstration. Finally a quality alternative to used, reconditioned, demoed or cheap imported products that break and lack local support.Kodiak is assembled with American Labor and has parts and technical support 2nd to none.Comparable in price to mid- lower segment equipment, but not cheaply made. Reduced cost to build due to simplicity in design, leveraging excess production capacity and brought to market with existing resources.",
+        "Kodiak Cleaning Equipment specializes in durable equipment that will last for years to come. If you are tired of purchasing a new floor scrubber every year, you have come to the right place! We would love to get in contact with you and provide a complimentary Site Survey and Demonstration. Finally a quality alternative to used, reconditioned, demoed or cheap imported products that break and lack local support. Kodiak is assembled with American Labor and has parts and technical support 2nd to none.Comparable in price to mid- lower segment equipment, but not cheaply made. Reduced cost to build due to simplicity in design, leveraging excess production capacity and brought to market with existing resources.",
       visual: imgKodiak,
     },
     {
