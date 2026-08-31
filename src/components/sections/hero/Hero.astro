@@ -1,6 +1,5 @@
 ---
 import heroImg from "./assets/azcacti.jpg";
-import CtaButton from "../../shared/CtaButton.astro";
 import GradientText from "../../shared/GradientText.astro";
 import SubTitle from "../../shared/SubTitle.astro";
 import Title from "../../shared/Title.astro";
@@ -12,7 +11,6 @@ const heroSection = {
   headline4: "1975!",
   subheading1: "Inside, outside, everywhere you drive, ",
   subheading2: "we've got you covered.",
-  buttonText: "Contact Us Today!",
 };
 export interface Props {
   className?: string;
@@ -36,7 +34,9 @@ const { className = "" } = Astro.props;
           >{heroSection.subheading1}<br />{heroSection.subheading2}</SubTitle
         >
         <div class="hero-cta">
-          <CtaButton>{heroSection.buttonText}</CtaButton>
+          <div class="hero-cta">
+            <a href="/contact" class="btn-cta">Contact Us Today!</a>
+          </div>
         </div>
       </div>
       <div class="hero-image-wrap">
